@@ -1,0 +1,74 @@
+1). Basics of CompSci as illustrated/illuminated through the process if building a search engine ! - cool
+
+Outline:
+
+1. Build Search Engine
+	I. Find Data 1 
+	II. Find Data 2
+	III. Find Data 3
+	IV. Build Index 1
+	V. Build Index 2
+	VI. Rank Pages
+
+Will use python, an intrepreted high-level language, in this course
+
+Why use new languages (programming) at all, rather than natural languages like English?
+
+	3 big problems with natural languages:
+
+	1) Ambiguity (human spoken language can be interpreted in different ways depending
+	on the listener; computers allow for only one possible interpretation of any given
+	command)
+
+	2) Verbosity (the sheer # of words makes interpretation difficult, in that a process that can be 
+	described in a few lines of code of could take paragraphs in written english)
+
+	3) Grammar (meaning, the existence of grammar in natural language allows for a single interpretation 
+	of several different sentences many:one, rather than the 1:many indicative of an ambiguity problem; 
+	while necessary for human communication, this is death to something like a computer which, if im 
+	getting this right, absolutely depends on repeatability, immutability, unequivocality what have you, 
+	in order to process information millions of times faster than humans)
+
+a). the grammar of programming:
+	i). the advantage of replacement grammar (making use of terminal and non-terminal elements)
+	elements )is the ability to describe a large
+	language with a small number of rules in a precise way
+
+	ii). In general, an expression must be evaluated until every element is terminal, meaning no further operations can be performed upon it
+
+	iii). Python grammar: besides the fact that any written statement must match
+	the grammar exactly
+		a). For Arithmetic, most important replacement rules are:
+		Expression >> Expression Operator Expression (known as a recursive definition, which are 
+				fundamental to programming)
+		Expression >> Number
+		Operator >> +
+		Operator >> *
+		Number >> 0,1,...
+		Expression >> (Expression) **
+
+		
+		b). For logic:
+
+
+	iv). Variables-composed of:
+		a). an Assignment Statement (Name = Expression)
+		for ex., speed_of_light = 299792458
+		*). important thing about variables, is that they can VARY within possible values the variable can take 
+		b). in python and most progLang, the "=" symbol does not signify equality but instead is a "verb" meaning "is assigned the value..."
+		c). String: "a sequence of characters, surrounded by quotes" ; can be single or double, and they must match, and double must be used when a given string contains a single quote
+		d). strings can be concatenated with another string, a variable taking the value of a string, but not with a number.  Interestingly, a string can be multiplied by a number for simple duplication
+		e). Indexing Strings (where an index, in this context, is a set of pairs of sequential integers and their corresponding string characters where number=position in string):
+   i). character extraction Syntax: <string> [<expression>]
+			for ex: 'udacity' [0] >> 'u'
+			    or, 'udacity' [1+1] >> 'a'
+			    or, name='Dave'
+				print name[2] >> 'v'
+			    or, print name[-1] >>
+   ii). substring extraction Syntax:
+		<string> [<expression>:<expression>]
+	, where expression must be a number;
+		a). not yet sure why, but substring extraction starting at position 3 and ending at position 4 [3:4] returns the character in the 3rd position plus the character in the fourth-minus-one position (also known as 3rd position)
+
+
+		

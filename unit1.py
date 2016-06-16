@@ -1,3 +1,5 @@
+# Important concepts from this lesson: Reference, Assignment, Replacement
+
 # write a program that prints out the number of
 # minutes there are in seven weeks
 print (60*24*7*7)
@@ -114,13 +116,18 @@ print (friskem.find ('word', 4)) #returns 12, as the fxn begins looking at posit
 
 # my first idea:
 
-start_link = page.find("<a href=")
-end_link = start_link.find('"',1)
-url =[start_link:end_link]
+# start_link = page.find("<a href=")
+# end_link = start_link.find('"',1)
+# url =[start_link:end_link]
 
 # the right answer:
+
+page='words words words <a href="link.com">'
 
 start_link = page.find("<a href=")
 start_quote = page.find('"',start_link)
 end_quote = page.find('"',start_quote+1)
-url = page[start_link+1:end_link]
+url = page[start_quote+1:end_quote]
+
+print (url)
+

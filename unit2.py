@@ -314,14 +314,26 @@ while <testExpression>:
 
 page = ...contents of some web page...
 
+# via manual iteration, our code would look like:
+
 start_link = page.find ('<a href=')
 start_quote = page.find ('"', start_link)
 end_quote = page.find ('"', start_quote+1)
 url = page[start_quote+1 : end_quote]
 print url
+
 page = page [end_quote:]
 
 start_link = page.find ('<a href=')
+start_quote = page.find ('"', start_link)
+end_quote = page.find ('"', start_quote+1)
+url = page[start_quote+1 : end_quote]
+print url
+
+# ...ad infinitum
+
+# in order to program the manual iterating, we must:
+	# encapsulate existing operations in a procedure:
 
 def get_next_target (page):
 	start_link = page.find ('<a href=')
@@ -368,10 +380,152 @@ def print_all_links (page):
 # unit 1 : variables, arithmetic
 # unit 2 : procedures, if, while
 
+# --------------------------------------------------------------------------------
+# P.S. #2 Problem Set --  - - - - - --- -- - -- - ---  - -- --  -- -- -- -- --- --
+
+def udacify (x):
+	y="U"+x
+	return y
+
+print udacify('dacians') #returns Udacians
+
+# which of the following exhibit the same behavior as:
+
+def proc(a,b):
+	if test(a):
+		return b
+	return a
+
+#3 - define a proc, median, that takes 3 dissimilar numbers as
+# inputs, and outputs the median of the 3 numbers
+# for ex:
+
+median(1,2,3) #returns 3
+median(9,3,6) #returns 6
+
+# my distracted attempt
+def median(a,b,c):
+	if (a>b):
+		if (a<c):
+			return a
+		else if (b>c):
+			return b
+	else if (b<c):
+		return
+		else return
 
 
+		median
 
+# the answer:
 
+def bigger(a,b):
+	if a > b:
+		return a
+	else:
+		return b
+def biggest(a,b,c):
+	return bigger(a,bigger(b,c))
 
+def median(a,b,c):
+	big = biggest(a,b,c)
+	if big == a:
+		return bigger(b,c)
+	if big == b:
+		return bigger(a,c)
+	else:
+		return bigger(a,b)
 
+median(2,4,6)
+
+def countdown(x):
+	while x >= 1:
+		return x-1
+		x = x-1
+	return "Blastoff!"
+
+print (countdown(5))
+
+# program a countdown:
+# mine:
+def countdown(x):
+	while x >= 2:
+		print (x-1)
+		x = x-1
+	print ("Blastoff!")
+
+print (countdown(10))
+
+# teacher's
+
+def countdown(n):
+	while n > 0:
+		print (n) #on final loop, 1 is printed, n becomes 0 >> the loop ends
+		n = n-1
+	print ("Blastoff!")
+
+print (countdown(10))
+
+# 5, last loop: always finishes, sometimes forever, or unknown?
+
+n = #<any positive integer>
+while n!=1:
+	if n%2 == 0: #this is the remainder check, not regular division
+		n= n/2
+	else:
+		n= 3*n + 1
+
+# question becomes, does there exist any odd number than when tripled
+# and increased by 1 remains an odd number?
+
+# unknown to anyone even computer (Collatz Conjecture)
+
+def find_last(a,b):
+	while a.find(b) != -1:
+	a.find(b)
+	return a.find(b)
+	a.find(b) = start
+	page = a[start:]
+	page.find(b) = a.find(b)
+
+#^^Doesna work right
+
+def find_last(a,b):
+	last_pos = -1 #sets last_pos to a starting value of -1
+	while True:
+		pos = a.find(b, last_pos+1) #binds "pos" to position of first
+		# instance of 'b' encountered within 'a' after -1
+		if pos == -1: #ends the loop if no instance of "b" is found between positions 0 and -1,
+					  #rather; no instance of 'b' was found within string 'a', the value of #'pos' doesnt change > last_pos remains at a value of -1 >
+			return last_pos
+		else: last_pos = pos #sets last_pos = pos where pos was set via the .find() method to
+			#something other than -1
+
+print(find_last("catata","a")) #returns position 5
+
+#7. Define a proc print_multiplication_table, that takes as input a positive
+# whole number, and prints out a multiplication table showing all the whole
+# number multiplications up to and including the input number.  This will re
+# quire a nested while loop
+
+#how far I got:
+def print_multiplication_table(x):
+	y=1
+	z=1
+	while y <= x:
+		print y*z
+		z=z+1
+		while z < x:
+			print
+
+#the answer:
+
+def print_multiplication_table(n):
+	i = 1
+	while i <= n:
+		j = 1
+		while j <= n:
+			print str(i) + " * " + str(j) + " = " + str(i*j)
+			j = j + 1
+		i = i + 1
 

@@ -31,10 +31,10 @@ def how_many_days(month):
 
 # Nested lists
 
-mixed_up = ['apple', 3, 'oranges', 27, ['alpha', 'beta']]
+mixed_up = ['apple', 3, 'oranges', 27, [1,2['alpha', 'beta']]]
 
 beatles = [['John', 1940], ['Paul', 1942], ['George', 1943], ['Ringo', 1940]]
-			]
+
 >>> print(beatles[1])
  ['Paul', 1942]
 >>> print(beatles[0][1])
@@ -58,7 +58,7 @@ def multiple():
 print (multiple())
 
 # The other important difference between strings and lists concerns
-# a lists' ability to handle Mutation,
+# a lists' ability to handle MUTATION,
 
 # Mutation, simply put, refers to the ability of a variable to
 # change after being created; dynamic, in motion, etc
@@ -83,6 +83,11 @@ q[4] = '!'  ,
 # All this touches on the broader idea of mutability.  So...Immutability
 # means a thing can't be mutated; not that it can't be muted/silenced?
 
+# Ex, a string cannot be mutated in the same way as a list
+
+s = 'Hello'
+s[0] = 'Y' #invalid python
+
 # When we have two names for the same thing...enter
 # ALIASING
 # Quiz: suppose we run:
@@ -97,7 +102,7 @@ agent[2] >>> 8
 
 # when element 2 of spy is changed, agent is changed and agent[2] is changed
 
-# Def a proc, replace_spy, that takes a likst of 3 and modifies 3rd
+# Def a proc, replace_spy, that takes a list of 3 and modifies 3rd
 # to be one more than previous
 
 def replace_spy([n1,n2,n3]):  #INVALID SYNTAX - CANNOT PASS LIST AS INPUT PARAMETER
@@ -110,6 +115,13 @@ def replace_spy(p):
 
 # to pass a list to a function, must first assign that list to
 # a singular variable
+
+# this should be recognized as distinct from methods like:
+
+def inc(n):
+	n = n+1
+a = 3
+inc(a) #does not change the value 'a' refers to
 
 # the important idea in this section is mutable v immutable objexts
 # List operations:
@@ -130,5 +142,229 @@ def replace_spy(p):
 			len("Udacity") >> 7
 
 # Quizzes: List operators:
+
+#what is the value of len (p) after running this code:
+
+p = [1,2]
+p.append (3)
+p = p + [4,5]  #this is a bit confusing, but this is a concatenation of two lists, not an append operation
+# que es len(p) ?
+5
+
+# and:
+
+p=[1,2]
+q=[3,4]
+p.append(q)
+len(p) #evaluates to 3
+print(p) # [1,2[3,4]]
+
+# How Computers Store Data
+
+# fastest access memory is stored in 'Switches' somewhere;
+# next quickest is right on the processor, only a few kbs, stored on the CPU 'Register'
+# the slower kind (your RAM) is stored in 'Capacitors' as DRAM
+# slowest is disk memory
+
+# Units of Memory
+
+2 ** 10 # 1 024 b, 1kb
+2 ** 20 # 1 048 576 b, 1mb
+2 ** 30 # 1 073 741 824 b, 1gb
+2 ** 40 # 1 099 411 627 776 B, 1tb
+
+# and 1 byte = 8 bits...a 2gb ram stick represents ~ 17 billion 'buckets'
+
+# Looping through a list
+
+while <test expr> :
+	<block>
+
+# how to loop through a list, quiz:
+
+def print_all_elements(p):
+	i = 0
+	while i < len(p):
+		print p[i]
+		i = i + 1
+
+# FOR loops
+
+for <name> in <list>:
+	<block>
+
+# Quiz: Def a proc, sum_list, thjat takes as its input a list of numbers and produces
+# as outsup the sum of all the elements in the input list. i.e.
+
+def sum_list(p):
+	result = 0
+	for e in p:  #read as "each time we execute the block,
+	# the value of element (e) will equal the current value of p"
+		result = result + e
+	return result
+
+#Teacher's:
+
+def measure_udacity(U):
+	count = 0
+	for e in U:
+		if e[0] == 'U':
+			count = count+1
+	return count
+
+# quiz : Define a procedure, find_element, that takes as
+# its inputs a list and a value of any type, and outputs the
+# index of the first element in the input list that matches the
+# value; if no match, output -1
+
+# Teacher-while loop
+
+def find_element(p,t):
+	i=0
+	while i<len(p):
+		if p[i] == t:
+			return i
+		i = i+1
+	return -1
+
+# Teacher-for loop
+
+def find_element(p,t):
+	i=0
+	for e in p:
+		if == t:
+			return i
+		i=i+1
+	return -1
+
+def find_element(l,n):
+	if(n in l):
+		return l.index(n)
+	else:
+		return -1
+
+def find_element(l,n):
+	if n not in p:
+		return -1
+	return l.index(n)
+
+# Define a proc, union, that takes as inputs two lists.  It
+# should modify the first input list to be the set union of
+# the two lists
+
+def union(l,s):
+	for e in s:
+		if e not in l:
+			l.extend(e)
+
+# Assume p refers to a list with at least two elements.  which of
+# these code fragments does not change the final value of p:
+
+# ___________________________________________________________________ #
+# Web Crawler:
+	# Collecting links:
+
+# as of the end of unit#2:
+
+def get_next_target (page):
+	start_link = page.find ('<a href=')
+	if page.find == -1:
+		return None, 0
+	start_quote = page.find ('"', start_link)
+	end_quote = page.find ('"', start_quote+1)
+	url = page[start_quote+1 : end_quote]
+	return url, end_quote
+
+
+def print_all_links (page):
+	while True:
+		url, endpos = get_next_target(page)
+		if url:
+			print url
+			page=page[endpos:]
+		else:
+			break
+
+# rather than simply printing the links as we go, how do we collect them in a
+# way that makes them usable:
+
+# def a proc 'get_all_links' that does more or less what print_all_links does but
+# collects (i'm thinking append/extend lists) all the links inside a list(I'm assuming)
+
+links = get_all_links(get_page('hhtp://www.udacity.com/cs101x/index.html'))
+print links
+
+# lets break this apart a little bit - print_all_links needs a few changes in any case
+	# a list variable to collect links in
+	# a method for accumulating links inside that list
+	# produce output
+
+#a)what should the initial value of 'links' be set to
+
+def get_all_links(page):
+	links = []
+	while True:
+		url,endpos = get_next_target(page)
+		if url:
+			links.append(url)
+			page = page[endpos:]
+		else:
+			break
+	return links
+
+	# ______________________ Finishing the web crawler #
+
+# We must also bring some order to the sequential crawling that is sensible
+# traceable, and non-random.  Rather, do we crawl every branch of the first link
+# or crawl every link of the seed page  . . .
+
+# Method chosen here is known as a "Depth-First Search"
+
+seed = 'http://www.udacity.com/cs101x/index.html'
+
+# however the current test group of sites is a closed loop, as is much of the web
+
+def Crawler:
+	tocrawl =[seed]
+	crawled = []
+	while tocrawl: # read as while tocrawl is non-empty, execute block
+		page = tocrawl.pop()
+		if page not in crawled:
+			# update the value of tocrawl
+			# update crawled
+	return crawled
+
+	def Crawler:
+	tocrawl =[seed]
+	crawled = []
+	while tocrawl: # read as while tocrawl is non-empty, execute block
+		page = tocrawl.pop()
+		if page not in crawled:
+			union (tocrawl,get_all_links(get_page(page)))
+			crawled.append(page)
+	return crawled
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

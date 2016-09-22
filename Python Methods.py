@@ -1,3 +1,10 @@
+Python Elements:
+
+	variable
+	string
+	list - (known in JS as an array) - sequence of anything ['a','b','c','!']
+	procedure
+
 Python Methods learned thus far (a living reference):
 
 	# create and assign a value to a variable
@@ -11,6 +18,16 @@ Python Methods learned thus far (a living reference):
 
 	# ret_Char before position[#]
 	var_name[:5]
+
+	# return item in nested list [[a,b],[c,d]]
+	nList[1][0]
+	# returns 'c'
+
+	# return position of specified value within list
+
+	<list>.index(<value>)
+
+		or p=['dog','cat','monkey'] >> p.index('monkey') >> 2
 
 	# find and return the position of a substring in a string, with optional param = position at which to start searching
 	var_name.find("certain string", 4)
@@ -29,6 +46,40 @@ Python Methods learned thus far (a living reference):
 	while i<10:
 		print i
 		i = i + 1
+
+	# loop through a list:
+
+	def print_all_elements(p):
+		for e in p:
+			print e
+
+	# append 'wholesale' to an existing list
+
+	<list>.append(<element>)
+
+	[1,2].append[3,4] >> [1,2[3,4]]
+
+	# integrated append
+
+	[1,2].extend[3,4] >> [1,2,3,4]
+
+	# pop
+
+	x = [1,2,'b']
+	x.pop() >> 'b'
+	x= [1,2]
+
+	# conditionals
+
+	if <test expression>:
+		<code to execute>
+
+	# 'in' (outside of for loop) checks presence/absence of a target value
+	# in a specified list, ie
+	<value> in <list>
+	<value> not in <list>
+	p=[0,1,2]
+	print (3 in p) #returns false
 
 Python Color-Coding:
 

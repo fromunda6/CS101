@@ -85,7 +85,7 @@ Python Color-Coding:
 
 # 1). recognized non-string datatypes (numbers and boolean values, maybe othere(?)) are in purple:
 
-	3, 2500, True, False #boolean values are only recognized in uppercase
+	3.2, 2500, True, False #boolean values are only recognized in lowercase
 
 # 2). strings, besides the obvious '' and "" identifiers, will always show up in
 

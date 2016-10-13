@@ -344,7 +344,51 @@ def Crawler:
 			crawled.append(page)
 	return crawled
 
+# Awesome.  We have taken what would have been a daunting task asnd broken it into manageable
+# components.  This ability is essential to pushing personal limits/learning and applying new
+# skills...
 
+
+
+# _ _ __ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ PROBLEM SET #3_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ #
+
+
+# given an empty set [p] and three transformations,
+# populate the set such that p = [1,2,3] after the execution
+# of three transformations:
+
+p[0] = p[0]+p[1] = 1
+p[1] = p[0]+p[2] = 2
+p[2] = p[0]+p[1] = 3 #known from final values
+
+# Example p = [1,1,1] //>>
+
+#Mutating lists:
+
+#beginning with p = [1,2,3], we perform some operations
+
+# terrible presenter is the TA . . .
+
+# def proc product_list(p) such that the list elements in p are multiplied together
+#regardless of the composition of p:
+
+def product_list(p):
+	total = 1
+	for i in p:
+		total = total*i
+	return total
+
+# def a proc, greatest, that takes as input a list of positive #s
+# and outputs the greatest # in that list; if the list is empty , output=0
+
+list_of_numbers = [2,5,7]
+
+def greatest(p):
+	big = 0
+	for i in p:
+		if i>big:
+			big = i
+	return big
 
 
 

@@ -72,3 +72,17 @@ def Crawler:
 # 0 is the keyword in each list, and element 1 is a list of all URLs in which tha
 # keyword is found
 #
+
+# Quiz: Define a procedure, add_to_index, that takes 3 inputs:
+# an index (as decided previously), a keyword, and a url:
+	#if keywird EXISTS, add url to list of url associated with that index
+	#if keyword not_found, add an entry to the index, being:
+		# [keyword, [url]]
+
+index = []
+def add_to_index(index,keyword,url):
+	for entry in index:  #entry could be anything - here just represents a unique combo of three input vars, one of which contains the other two ...
+		if entry[0] == keyword: #equality-testing and if true means new url for keyword already listed
+			entry[1].append(url)
+			return
+	index.append([keyword,[url]]) #in the case where the keyword was not found in the index

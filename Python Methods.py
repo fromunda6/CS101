@@ -43,6 +43,7 @@ Python Methods learned thus far (a living reference):
 
 	# loop through a 'block' of operations while a condition(s) remains true, requiring
 	# only that a way to exit the loop is built into the code block
+
 	while i<10:
 		print i
 		i = i + 1

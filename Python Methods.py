@@ -7,6 +7,11 @@ Python Elements:
 
 Python Methods learned thus far (a living reference):
 
+	#calculate length of list:
+		fruits = ['apple','orange','banana']
+		len(fruits)
+			#>>>would return value 3, were return or print statement added
+
 	# create and assign a value to a variable
 		var_name = constant, function, range, series, (...anything?)
 

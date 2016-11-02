@@ -278,7 +278,7 @@ def add_to_index(index, keyword, url):
 # TA's:
 
 def add_to_index(index, keyword, url):
-    for entry in index:
+    for entry in index:  #this names the elements of the list(required form) 'index' as 'entry[]', in addition to defining the loop
         if entry[0] == keyword:
         	if not url in entry[1]:
 				entry[1].append(url)
@@ -286,5 +286,77 @@ def add_to_index(index, keyword, url):
     # not found, add new keyword to index
     index.append([keyword, [url]])
 
+# Addt'l Exercises:
 
+# Write a procedure, count_words, which takes as input a string
+# and returns the number of words in the string. You may consider words
+# as strings of characters separated by spaces.
+
+def count_words(passage):
+    output=passage.split()
+    return len(output)
+
+
+passage =("The number of orderings of the 52 cards in a deck of cards "
+"is so great that if every one of the almost 7 billion people alive "
+"today dealt one ordering of the cards per second, it would take "
+"2.5 * 10**40 times the age of the universe to order the cards in every "
+"possible way.")
+print (count_words(passage))
+#>>>56
+
+# Write a procedure, speed_fraction, which takes as its inputs the result of
+# a traceroute (in ms) and distance (in km) between two points. It should
+# return the speed the data travels as a decimal fraction of the speed of
+# light.
+
+speed_of_light = 300000. # km per second
+# normalize
+speed_of_light_kpms=speed_of_light/1000
+
+def speed_fraction(tracest,distance):
+	# calculate speed of trace
+	trace_speed_kpms=distance/tracest #in kpms
+	# compare
+	fractional_light=trace_speed_kpms/speed_of_light_kpms
+	return fractional_light
+
+print (speed_fraction(50,5000))
+# # #>>> 0.666666666667  WRONG
+
+print (speed_fraction(50,10000))
+# # #>>> 1.33333333333  # Any thoughts about this answer, or these inputs?
+
+	#Yes, the latter suggests something moving at 4/3 the speed of light
+
+# Write a procedure, convert_seconds, which takes as input a non-negative
+# number of seconds and returns a string of the form
+# '<integer> hours, <integer> minutes, <number> seconds' but
+# where if <integer> is 1 for the number of hours or minutes,
+# then it should be hour/minute. Further, <number> may be an integer
+# or decimal, and if it is 1, then it should be followed by second.
+# You might need to use int() to turn a decimal into a float depending
+# on how you code this. int(3.0) gives 3
+#
+# Note that English uses the plural when talking about 0 items, so
+# it should be "0 minutes".
+#
+
+def convert_seconds(pos_amt_sec):
+    spm=60
+    sph=3600
+    coherent_time = (int(pos_amt_sec/sph))
+    return coherent_time
+
+print(convert_seconds(7201))
+
+
+print convert_seconds(3661)
+#>>> 1 hour, 1 minute, 1 second
+
+print convert_seconds(7325)
+#>>> 2 hours, 2 minutes, 5 seconds
+
+print convert_seconds(7261.7)
+#>>> 2 hours, 1 minute, 1.7 seconds
 

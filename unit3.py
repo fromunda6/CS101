@@ -27,7 +27,7 @@ def how_many_days(month):
 	return days_in_month[month - 1]
 
 #accounting for the fact that indexing begins at 0, not 1
-# such that days_in_month[1] = February, nor January
+# such that days_in_month[1] = 28, not 29 (ignoring leap year)
 
 # Nested lists
 

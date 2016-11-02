@@ -12,7 +12,7 @@ life.count()
 
 # In completing the web crawler, redefined below, we have left out how to respond
 # to queries; or more fundamentally, how to make our program behave with anything
-# more than on/off functionality.  Namely, responding to user input, in the for
+# more than on/off functionality.  Namely, responding to user input, in the form
 # of web queries.  CS: How to use and build complex data structures such that, with
 # respect to our web-crawler-soon-to-be-search-engine, an efficient traversal of all
 # data comprising our hypothetical www can be achieved
@@ -28,6 +28,9 @@ life.count()
 
 page = "contents of some ancient, text-only webpage"
 
+
+#given a single webpage, returns the first website encountered and its ending location
+
 def get_next_target (page):
 	start_link = page.find ('<a href=')
 	if page.find == -1:  #return value of fruitless ".find" method
@@ -36,6 +39,8 @@ def get_next_target (page):
 	end_quote = page.find ('"', start_quote+1)
 	url = page[start_quote+1 : end_quote]
 	return url, end_quote
+
+#given a single webpage, accumulates all links within a page
 
 def get_all_links(page):
 	links = []
@@ -48,13 +53,15 @@ def get_all_links(page):
 			break
 	return links
 
-def Crawler:
-	tocrawl =[seed]
-	crawled = []
+#given a starting url and a list of pages already crawled, accumulates all uncrawled material, crawls it for links, and repeats until no urls remain
+
+def crawl_web(seed):
+	tocrawl =[seed] #initialize tocrawl to the seed, a list containing just the seed
+	crawled = []  #initialize crawled to empty list storage for pages
 	while tocrawl: # read as while tocrawl is non-empty, execute block
-		page = tocrawl.pop()
+		page = tocrawl.pop() #use last item in list tocrawl as var page
 		if page not in crawled:
-			union (tocrawl,get_all_links(get_page(page)))
+			union (tocrawl,get_all_links(get_page(page))) # UNION into tocrawl all the links we can find on that page
 			crawled.append(page)
 	return crawled
 
@@ -79,10 +86,101 @@ def Crawler:
 	#if keyword not_found, add an entry to the index, being:
 		# [keyword, [url]]
 
+
 index = []
 def add_to_index(index,keyword,url):
-	for entry in index:  #entry could be anything - here just represents a unique combo of three input vars, one of which contains the other two ...
+	for entry in index:  #entry could be anything - here just represents a unique combo of two input vars, one of which contains the other ...
 		if entry[0] == keyword: #equality-testing and if true means new url for keyword already listed
 			entry[1].append(url)
 			return
+	#not found, add a new entry
 	index.append([keyword,[url]]) #in the case where the keyword was not found in the index
+
+# Lookup on the index
+
+def lookup(index, keyword):
+	for entry in index:  #in addition to setting the target through which to loop, what's crucial is the creation of entry as the name of each element in index;#this presupposes and requires that index be fed to the function in a appropriate form, in this case at a minimum that it is a list
+		if entry[0]==keyword:		 #ENTRY must be a list as well, otherwise this means nothing
+			return entry[1]
+	return []
+
+# In effect, what we now need to build is an index for our web crawler, such that we can encapsulate the functionality of the existing crawler inside a user-driven keyword search
+
+index=[]
+
+#define a function that adds to our index in the form defined in 'add_to_index' the entire text contents of a page - only new thing here is that where we formerly gave add_to_index a keyword, that input parameter is now derived...
+def add_page_to_index(index,url,content):
+	words = content.split()
+	for word in words:
+		add_to_index(index,word,url)  #don't get confused - the variable 'word' is here passed in to fxn as parameter 'keyword'
+
+
+#alter crawl_web such that given only a seed, we can return the content of all pages linked to that url, retrievable as:
+# an _index_ composed of organized _content_ that is searchable via ~lookup~ and archived in _crawled_
+
+#also updated to pre-fetch contents of web pages
+
+def crawl_web(seed):
+	tocrawl=[seed]
+	crawled=[]
+	index=[]
+	while tocrawl:
+		page=tocrawl.pop()
+		if page not in crawled:
+			content=get_page(page)
+			add_page_to_index(index, page, content) #where page is a URL
+			union(tocrawl,get_all_links(content))
+			crawled.append(page)
+	return index
+
+#The internet-how to we retrieve stuff from it; well, via Python, it would be:
+
+	def get_page(url):
+		try:
+			import urllib
+			return urllib.urlopen(url).read()
+		except:		#exception handler
+			return ""
+
+#Network: a group of entities that can communicate, even though they are not all directly connected
+#we use this definition for the purposes of discussing the internet
+
+# A--B >not a network;  A--B--C >A network
+
+#Components of a network:
+	#a method of encoding and interpreting messages (smoke signals == specific message)
+		#internet: message >> bits >> electrons/photons
+	#selective rules of transmission (directing smoke signals)
+		#routers
+	#rules of access to the network (if you;re a general, your message has priority)
+		#internet: best effort service
+
+	#AND, Protocols - or how the client and server talk to each other
+		#HTTP: GET <object> ; RESPONSE-CONTENTS OF <object>
+
+#Latency-time that it takes for a message to get from source to a destination
+	#measured in milliseconds
+
+#Bandwidth-amount of information that can be transmitted per unit time
+	#measured in bits per second or more like mbps
+
+#TraceRoute (tracert hostname in terminal) will trace a network communication route
+
+#-------------------------------------------------------------------------------------------------------------------
+
+# Problem Set #4 (largely conceptual):
+
+# 1) How to modify index to keep track of the # of times users click on a particular link?
+
+	index = [['keyword1', ['url1','count1'],['url2','count2']],['keyword2',['url1','count1']]]
+
+	# like so
+
+# 2) how would certain changes to procs add_to_index and lookup affect our search engine?
+
+
+
+
+
+
+

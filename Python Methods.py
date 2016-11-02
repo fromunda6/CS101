@@ -8,26 +8,30 @@ Python Elements:
 Python Methods learned thus far (a living reference):
 
 	# create and assign a value to a variable
-	var_name = constant, function, range, series, (...anything?)
+		var_name = constant, function, range, series, (...anything?)
 
-	# return a character in position[#] from variable theta
-	theta[0]
+		# return a character in position[#] from variable theta
+		theta[0]
 
-	# ret_Char from position[#] to the end of vari
-	vari[0:]
+		# ret_Char from position[#] to the end of vari
+		vari[0:]
 
-	# ret_Char before position[#]
-	var_name[:5]
+		# ret_Char before position[#]
+		var_name[:5]
 
-	# return item in nested list [[a,b],[c,d]]
-	nList[1][0]
-	# returns 'c'
+		# return item in nested list [[a,b],[c,d]]
+		nList[1][0]
+		# returns 'c'
 
-	# return position of specified value within list
+		# return position of specified value within list
 
-	<list>.index(<value>)
+		<list>.index(<value>)
 
-		or p=['dog','cat','monkey'] >> p.index('monkey') >> 2
+			or p=['dog','cat','monkey'] >> p.index('monkey') >> 2
+
+	# split a string into component words (based on as yet uncertain mechanisms):
+		quote="horse cheese"
+		 print (quote.split()) >> ["horse", "cheese"]
 
 	# find and return the position of a substring in a string, with optional param = position at which to start searching
 	var_name.find("certain string", 4)

@@ -178,9 +178,113 @@ def crawl_web(seed):
 
 # 2) how would certain changes to procs add_to_index and lookup affect our search engine?
 
+	# Previous:
+
+def add_to_index(index,keyword,url):
+	for entry in index:
+		if entry[0] == keyword:
+			entry[1].append(url)
+			return
+	index.append([keyword,[url]])
+
+def lookup(index, keyword):
+	for entry in index:
+		if entry[0]==keyword:
+			return entry[1]
+	return []
 
 
+	# Proposed:
 
+def add_to_index(index, keyword, url):
+	index.append([keyword, url])
+
+def lookup(index, keyword):
+	result = []
+	for entry in index:
+		if entry[0] == keyword:
+			result.append(entry[1])
+	return result
+
+# Difference is whether we modify locally the 'result' initialized in lookup V2...
+
+# 1 Gold Star
+
+# The built-in <string>.split() procedure works
+# okay, but fails to find all the words on a page
+# because it only uses whitespace to split the
+# string. To do better, we should also use punctuation
+# marks to split the page into words.
+
+# Define a procedure, split_string, that takes two
+# inputs: the string to split and a string containing
+# all of the characters considered separators. The
+# procedure should return a list of strings that break
+# the source string up by the characters in the
+# splitlist.
+
+
+def split_string(source,splitlist):
+	output = []
+	atsplit = True #indicates we're at a split, and Starts us there
+	for char in source: #iterate through string by each letter
+		if char in splitlist:
+			atsplit = True
+		else:
+			if atsplit:
+				output.append(char)
+				atsplit = False
+			else:
+				output[-1] = output[-1] + char  #again, the [-1] item in a list is that in the last position
+	return output
+
+out = split_string("This is a test-of the,string separation-code!"," ,!-")
+print out
+#>>> ['This', 'is', 'a', 'test', 'of', 'the', 'string', 'separation', 'code']
+
+out = split_string("After  the flood   ...  all the colors came out.", " .")
+print out
+#>>> ['After', 'the', 'flood', 'all', 'the', 'colors', 'came', 'out']
+
+out = split_string("First Name,Last Name,Street Address,City,State,Zip Code",",")
+print out
+#>>>['First Name', 'Last Name', 'Street Address', 'City', 'State', 'Zip Code']
+
+#4).
+
+# The current index includes a url in the list of urls
+# for a keyword multiple times if the keyword appears
+# on that page more than once.
+
+# It might be better to only include the same url
+# once in the url list for a keyword, even if it appears
+# many times.
+
+# Modify add_to_index so that a given url is only
+# included once in the url list for a keyword,
+# no matter how many times that keyword appears.
+
+
+# Mine
+def add_to_index(index, keyword, url):
+    for entry in index:
+        if entry[0] == keyword:
+        	if url != entry[1]:
+				entry[1].append(url)
+            return
+    # not found, add new keyword to index
+    index.append([keyword, [url]])
+
+# TA's:
+
+def add_to_index(index, keyword, url):
+    for entry in index:
+        if entry[0] == keyword:
+        	if not url in entry[1]:
+				entry[1].append(url)
+            return
+    # not found, add new keyword to index
+    index.append([keyword, [url]])
 
 
 
